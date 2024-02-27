@@ -20,6 +20,26 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 function launchModal() {
   modalbg.style.display = "block";
 }
+  // Fonction pour valider les cases à cocher avant la soumission du formulaire
+  function validateForm() {
+    // Récupérer les références des cases à cocher
+    const checkbox1 = document.getElementById("checkbox1");
+    const checkbox2 = document.getElementById("checkbox2");
+    
+    // Vérifier si au moins une case à cocher est cochée
+    if (!checkbox1.checked && !checkbox2.checked) {
+      // Aucune case à cocher n'est cochée, afficher un message d'erreur
+      alert("Veuillez cocher au moins une des options.");
+      return false; // Empêcher la soumission du formulaire
+    }
+    
+    // Si au moins une case à cocher est cochée, le formulaire peut être soumis
+    return true;
+  }
+
+
+
+
 
 
 /*
