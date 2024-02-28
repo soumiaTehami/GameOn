@@ -60,11 +60,12 @@
               name="reserve"
               action="index.html"
               method="get"
-              onsubmit="return validate();"
+
             >
               <div
                 class="formData">
                 <label for="first">Prénom</label><br>
+                <P class="firstNameErreur"></P>
                 <input
                   class="text-control"
                   type="text"
@@ -88,8 +89,9 @@
               <form id="myForm">
                 <div class="formData">
                   <label for="email">E-mail</label><br>
-                  <input class="text-control" type="email" id="email" name="email" required /><br>
                   <div id="emailValidationMessage" class="validation-message"></div>
+                  <input class="text-control" type="email" id="email" name="email" required /><br>
+                  
                 </div>
               
              
@@ -107,7 +109,7 @@
               <div
                 class="formData">
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-                <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99" >
+                <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99" value="1" >
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
               <div
@@ -187,7 +189,7 @@
                   class="checkbox-input"
                   type="checkbox"
                   id="checkbox1"
-                  checked
+                
                   name="acceptéCondition"
                 />
                 <label class="checkbox2-label" for="checkbox1" required>
@@ -206,7 +208,6 @@
                 class="btn-submit button"
                 type="submit"
                 value="C'est parti"
-                onclick="return validateForm()" 
               />
             </form>
           </div>

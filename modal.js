@@ -22,40 +22,35 @@ function launchModal() {
 }
 
 
-document.getElementById("email").addEventListener("input", function() {
-  var emailInput = this.value;
-  var emailValidationMessage = document.getElementById("emailValidationMessage");
-  var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  if (!regex.test(emailInput)) {
-    emailValidationMessage.textContent = "L'adresse électronique n'est pas valide.";
-  } else {
-    emailValidationMessage.textContent = "";
-  }
-});
+  document.getElementById("email").addEventListener("input", function() {
+    const emailInput = this.value;
+    const emailValidationMessage = document.getElementById("emailValidationMessage");
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+    if (regex.test(emailInput)) {
+      emailValidationMessage.textContent = "L'adresse électronique est valide.";
+      emailValidationMessage.style.color = "green";
+    } else {
+      emailValidationMessage.textContent = "L'adresse électronique n'est pas valide.";
+      emailValidationMessage.style.color = "red";
+    }
+  });
 
  
 
-// Fonction pour valider les cases à cocher avant la soumission du formulaire
-  function validateForm() {
-    // Récupérer les références des cases à cocher
+  document.addEventListener("DOMContentLoaded", function() {
     const checkbox1 = document.getElementById("checkbox1");
-    const checkbox2 = document.getElementById("checkbox2");
-    
-    // Vérifier si au moins une case à cocher est cochée
-    if (!checkbox1.checked && !checkbox2.checked) {
-      // Aucune case à cocher n'est cochée, afficher un message d'erreur
-      alert("Veuillez cocher au moins une des options.");
-      return false; // Empêcher la soumission du formulaire
-    }
-    
-    // Si au moins une case à cocher est cochée, le formulaire peut être soumis
-    return true;
-  }
-
-
-
-
+    const myForm = document.getElementById("myForm");
+    const btnSubmit = document.querySelector('.btn-submit');
+  
+    btnSubmit.addEventListener("click", function(event) {
+      if (!checkbox1.checked) {
+        alert("Veuillez cocher la case pour accepter les conditions d'utilisation.");
+        event.preventDefault(); // Empêcher la soumission du formulaire
+      }
+    });
+  });
 
 
 /*

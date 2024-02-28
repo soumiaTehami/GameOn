@@ -526,4 +526,9 @@ footer {
     opacity: 1;
   }
 }
+.firstNameErreur{
+  color:red;
+  font-weight: 500;
+  display: none;
+}
 
