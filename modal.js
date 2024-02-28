@@ -21,6 +21,35 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+  var firstNameInput = document.getElementById("first");
+  var lastNameInput = document.getElementById("last");
+
+  firstNameInput.addEventListener("input", function() {
+    var firstName = firstNameInput.value.trim();
+    var firstNameError = document.querySelector(".firstNameErreur");
+    var regex = /^[a-zA-ZÀ-ÿ\s'-]{2,18}$/; // Seulement des lettres, espaces, apostrophes et tirets, entre 2 et 18 caractères
+
+    if (!regex.test(firstName)) {
+      firstNameError.textContent = "Le prénom est invalide.";
+    } else {
+      firstNameError.textContent = "";
+    }
+  });
+
+  lastNameInput.addEventListener("input", function() {
+    var lastName = lastNameInput.value.trim();
+    var lastNameError = document.querySelector(".lastNameErreur");
+    var regex = /^[a-zA-ZÀ-ÿ\s'-]{1,18}$/; // Seulement des lettres, espaces, apostrophes et tirets, entre 1 et 18 caractères
+
+    if (!regex.test(lastName)) {
+      lastNameError.textContent = "Le nom est invalide.";
+    } else {
+      lastNameError.textContent = "";
+    }
+  });
+});
+
 
 
   document.getElementById("email").addEventListener("input", function() {
