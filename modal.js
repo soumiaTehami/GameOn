@@ -20,7 +20,23 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 function launchModal() {
   modalbg.style.display = "block";
 }
-  // Fonction pour valider les cases à cocher avant la soumission du formulaire
+
+
+document.getElementById("email").addEventListener("input", function() {
+  var emailInput = this.value;
+  var emailValidationMessage = document.getElementById("emailValidationMessage");
+  var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!regex.test(emailInput)) {
+    emailValidationMessage.textContent = "L'adresse électronique n'est pas valide.";
+  } else {
+    emailValidationMessage.textContent = "";
+  }
+});
+
+ 
+
+// Fonction pour valider les cases à cocher avant la soumission du formulaire
   function validateForm() {
     // Récupérer les références des cases à cocher
     const checkbox1 = document.getElementById("checkbox1");

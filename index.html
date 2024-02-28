@@ -85,18 +85,14 @@
                   required
                 /><br>
               </div>
-              <div
-                class="formData">
-                <label for="email">E-mail</label><br>
-                <input
-                  class="text-control"
-                  type="email"
-                  id="email"
-                  name="email"
-                  pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-                  required
-                /><br>
-              </div>
+              <form id="myForm">
+                <div class="formData">
+                  <label for="email">E-mail</label><br>
+                  <input class="text-control" type="email" id="email" name="email" required /><br>
+                  <div id="emailValidationMessage" class="validation-message"></div>
+                </div>
+              
+             
               <div
                 class="formData">
                 <label for="birthdate">Date de naissance</label><br>
