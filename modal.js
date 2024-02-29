@@ -22,13 +22,13 @@ function launchModal() {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-  var firstNameInput = document.getElementById("first");
-  var lastNameInput = document.getElementById("last");
+  const firstNameInput = document.getElementById("first");
+  const  lastNameInput = document.getElementById("last");
 
   firstNameInput.addEventListener("input", function() {
-    var firstName = firstNameInput.value.trim();
-    var firstNameError = document.querySelector(".firstNameErreur");
-    var regex = /^[a-zA-ZÀ-ÿ\s'-]{2,18}$/; // Seulement des lettres, espaces, apostrophes et tirets, entre 2 et 18 caractères
+    const  firstName = firstNameInput.value.trim();
+    const  firstNameError = document.querySelector(".firstNameErreur");
+    const  regex = /^[a-zA-ZÀ-ÿ\s'-]{2,18}$/; // Seulement des lettres, espaces, apostrophes et tirets, entre 2 et 18 caractères
 
     if (!regex.test(firstName)) {
       firstNameError.textContent = "Le prénom est invalide.";
@@ -38,9 +38,9 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   lastNameInput.addEventListener("input", function() {
-    var lastName = lastNameInput.value.trim();
-    var lastNameError = document.querySelector(".lastNameErreur");
-    var regex = /^[a-zA-ZÀ-ÿ\s'-]{1,18}$/; // Seulement des lettres, espaces, apostrophes et tirets, entre 1 et 18 caractères
+    const  lastName = lastNameInput.value.trim();
+    const lastNameError = document.querySelector(".lastNameErreur");
+    const  regex = /^[a-zA-ZÀ-ÿ\s'-]{1,18}$/; // Seulement des lettres, espaces, apostrophes et tirets, entre 1 et 18 caractères
 
     if (!regex.test(lastName)) {
       lastNameError.textContent = "Le nom est invalide.";
@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
       lastNameError.textContent = "";
     }
   });
+
 });
 
 
@@ -66,6 +67,23 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 
+  document.addEventListener("DOMContentLoaded", function() {
+    const birthdateInput = document.getElementById("birthdate");
+  
+    birthdateInput.addEventListener("change", function() {
+      const birthdateValue = this.value;
+      const birthdate = new Date(birthdateValue);
+      const currentDate = new Date();
+      const age = currentDate.getFullYear() - birthdate.getFullYear();
+  
+      // Vérifier si l'âge est inférieur à 18 ans
+      if (age < 18) {
+        alert("Vous devez avoir plus de 18 ans pour vous inscrire.");
+        // Réinitialiser la valeur du champ de date de naissance
+        this.value = "";
+      }
+    });
+  });
  
 
   document.addEventListener("DOMContentLoaded", function() {
