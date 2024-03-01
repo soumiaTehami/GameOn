@@ -21,84 +21,109 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-  const firstNameInput = document.getElementById("first");
-  const  lastNameInput = document.getElementById("last");
+// Fonction pour valider le prénom
+function validateFirstName() {
+  const firstName = document.getElementById("first").value.trim();
+  const firstNameError = document.querySelector(".firstNameErreur");
+  const regex = /^[a-zA-ZÀ-ÿ\s'-]{2,18}$/; // Expression régulière pour valider le prénom
 
-  firstNameInput.addEventListener("input", function() {
-    const  firstName = firstNameInput.value.trim();
-    const  firstNameError = document.querySelector(".firstNameErreur");
-    const  regex = /^[a-zA-ZÀ-ÿ\s'-]{2,18}$/; // Seulement des lettres, espaces, apostrophes et tirets, entre 2 et 18 caractères
+  if (!regex.test(firstName)) {
+    firstNameError.textContent = "Le prénom est invalide.";
+    return false;
+  } else {
+    firstNameError.textContent = "";
+    return true;
+  }
+}
 
-    if (!regex.test(firstName)) {
-      firstNameError.textContent = "Le prénom est invalide.";
-    } else {
-      firstNameError.textContent = "";
-    }
-  });
+// Fonction pour valider le nom
+function validateLastName() {
+  const lastName = document.getElementById("last").value.trim();
+  const lastNameError = document.querySelector(".lastNameErreur");
+  const regex = /^[a-zA-ZÀ-ÿ\s'-]{1,18}$/; // Expression régulière pour valider le nom
 
-  lastNameInput.addEventListener("input", function() {
-    const  lastName = lastNameInput.value.trim();
-    const lastNameError = document.querySelector(".lastNameErreur");
-    const  regex = /^[a-zA-ZÀ-ÿ\s'-]{1,18}$/; // Seulement des lettres, espaces, apostrophes et tirets, entre 1 et 18 caractères
+  if (!regex.test(lastName)) {
+    lastNameError.textContent = "Le nom est invalide.";
+    return false;
+  } else {
+    lastNameError.textContent = "";
+    return true;
+  }
+}
 
-    if (!regex.test(lastName)) {
-      lastNameError.textContent = "Le nom est invalide.";
-    } else {
-      lastNameError.textContent = "";
-    }
-  });
+// Fonction pour valider l'email
+function validateEmail() {
+  const email = document.getElementById("email").value.trim();
+  const emailValidationMessage = document.getElementById("emailValidationMessage");
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Expression régulière pour valider l'email
 
+  if (!regex.test(email)) {
+    emailValidationMessage.textContent = "L'adresse électronique est invalide.";
+    emailValidationMessage.style.color = "red";
+    return false;
+  } else {
+    emailValidationMessage.textContent = "L'adresse électronique est valide.";
+    emailValidationMessage.style.color = "green";
+    return true;
+  }
+}
+
+// Fonction pour valider la date de naissance
+function validateBirthdate() {
+  const birthdateInput = document.getElementById("birthdate");
+  const birthdateValue = birthdateInput.value;
+  const birthdate = new Date(birthdateValue);
+  const currentDate = new Date();
+  const age = currentDate.getFullYear() - birthdate.getFullYear();
+
+  if (age < 18) {
+    alert("Vous devez avoir plus de 18 ans pour vous inscrire.");
+    birthdateInput.value = ""; // Réinitialisation de la valeur du champ de date de naissance
+    return false;
+  } else {
+    return true;
+  }
+}
+
+
+// Fonction pour valider la case à cocher
+function validateCheckbox() {
+  const checkbox1 = document.getElementById("checkbox1");
+
+  if (!checkbox1.checked) {
+    alert("Veuillez cocher la case pour accepter les conditions d'utilisation.");
+    return false;
+  } else {
+    return true;
+  }
+}
+
+// Fonction pour vérifier si tous les champs sont valides avant de soumettre le formulaire
+function checkAllFields() {
+  const isFirstNameValid = validateFirstName();
+  const isLastNameValid = validateLastName();
+  const isEmailValid = validateEmail();
+  const isBirthdateValid = validateBirthdate();
+  const isCheckboxValid = validateCheckbox();
+
+  return isFirstNameValid && isLastNameValid && isEmailValid && isBirthdateValid && isCheckboxValid;
+}
+
+// Ajouter des événements de changement pour chaque champ
+document.getElementById("first").addEventListener("input", validateFirstName);
+document.getElementById("last").addEventListener("input", validateLastName);
+document.getElementById("email").addEventListener("input", validateEmail);
+document.getElementById("birthdate").addEventListener("change", validateBirthdate);
+document.getElementById("checkbox1").addEventListener("change", validateCheckbox);
+console.log(document.querySelector(".btn-submit"))
+// Ajouter un événement de soumission pour le formulaire
+document.querySelector(".btn-submit").addEventListener("click", function(event) {
+  event.preventDefault(); // Empêcher la soumission du formulaire si un champ est invalide
+  console.log(checkAllFields());
+  if (!checkAllFields()) {
+   
+  }
 });
-
-
-
-  document.getElementById("email").addEventListener("input", function() {
-    const emailInput = this.value;
-    const emailValidationMessage = document.getElementById("emailValidationMessage");
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  
-    if (regex.test(emailInput)) {
-      emailValidationMessage.textContent = "L'adresse électronique est valide.";
-      emailValidationMessage.style.color = "green";
-    } else {
-      emailValidationMessage.textContent = "L'adresse électronique n'est pas valide.";
-      emailValidationMessage.style.color = "red";
-    }
-  });
-
-  document.addEventListener("DOMContentLoaded", function() {
-    const birthdateInput = document.getElementById("birthdate");
-  
-    birthdateInput.addEventListener("change", function() {
-      const birthdateValue = this.value;
-      const birthdate = new Date(birthdateValue);
-      const currentDate = new Date();
-      const age = currentDate.getFullYear() - birthdate.getFullYear();
-  
-      // Vérifier si l'âge est inférieur à 18 ans
-      if (age < 18) {
-        alert("Vous devez avoir plus de 18 ans pour vous inscrire.");
-        // Réinitialiser la valeur du champ de date de naissance
-        this.value = "";
-      }
-    });
-  });
- 
-
-  document.addEventListener("DOMContentLoaded", function() {
-    const checkbox1 = document.getElementById("checkbox1");
-    const myForm = document.getElementById("myForm");
-    const btnSubmit = document.querySelector('.btn-submit');
-  
-    btnSubmit.addEventListener("click", function(event) {
-      if (!checkbox1.checked) {
-        alert("Veuillez cocher la case pour accepter les conditions d'utilisation.");
-        event.preventDefault(); // Empêcher la soumission du formulaire
-      }
-    });
-  });
-
 
 /*
  * Fonction pour fermer la modale
