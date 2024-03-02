@@ -71,7 +71,12 @@ function validateEmail() {
 // Fonction pour valider la date de naissance
 function validateBirthdate() {
   const birthdateInput = document.getElementById("birthdate");
-  const birthdateValue = birthdateInput.value;
+  const birthdateValue = birthdateInput.value.trim(); // Supprimer les espaces blancs
+  if (birthdateValue === "") {
+    alert("Veuillez saisir votre date de naissance.");
+    return false;
+  }
+
   const birthdate = new Date(birthdateValue);
   const currentDate = new Date();
   const age = currentDate.getFullYear() - birthdate.getFullYear();
@@ -84,6 +89,7 @@ function validateBirthdate() {
     return true;
   }
 }
+
 
 
 // Fonction pour valider la case à cocher
