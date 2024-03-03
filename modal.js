@@ -112,7 +112,27 @@ function checkAllFields() {
   const isBirthdateValid = validateBirthdate();
   const isCheckboxValid = validateCheckbox();
 
-  return isFirstNameValid && isLastNameValid && isEmailValid && isBirthdateValid && isCheckboxValid;
+  const isFormValid = isFirstNameValid && isLastNameValid && isEmailValid && isBirthdateValid && isCheckboxValid;
+
+  if (isFormValid) {
+    displayConfirmationMessage();
+  }
+
+  return isFormValid;
+}
+
+function displayConfirmationMessage() {
+  // Afficher le message de confirmation
+  const confirmationMessage = document.getElementById("confirmationMessage");
+  if (confirmationMessage) {
+    confirmationMessage.style.display = "block";
+  }
+
+  // Masquer le formulaire
+  const form = document.querySelector(".modal-body form");
+  if (form) {
+    form.style.display = "none";
+  }
 }
 
 // Ajouter des événements de changement pour chaque champ
@@ -121,14 +141,11 @@ document.getElementById("last").addEventListener("input", validateLastName);
 document.getElementById("email").addEventListener("input", validateEmail);
 document.getElementById("birthdate").addEventListener("change", validateBirthdate);
 document.getElementById("checkbox1").addEventListener("change", validateCheckbox);
-console.log(document.querySelector(".btn-submit"))
-// Ajouter un événement de soumission pour le formulaire
+
+// Ajouter un événement de clic sur le bouton de soumission
 document.querySelector(".btn-submit").addEventListener("click", function(event) {
   event.preventDefault(); // Empêcher la soumission du formulaire si un champ est invalide
-  console.log(checkAllFields());
-  if (!checkAllFields()) {
-   
-  }
+  checkAllFields();
 });
 
 /*
