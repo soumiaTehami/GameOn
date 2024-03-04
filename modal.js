@@ -24,14 +24,18 @@ function launchModal() {
 // Fonction pour valider le prénom
 function validateFirstName() {
   const firstName = document.getElementById("first").value.trim();
-  const firstNameError = document.querySelector(".firstNameErreur");
+  const firstContainer = document.querySelector(".first-container");
+  const errorDisplay = document.querySelector(".first-container > span");
+  
   const regex = /^[a-zA-ZÀ-ÿ\s'-]{2,18}$/; // Expression régulière pour valider le prénom
 
   if (!regex.test(firstName)) {
-    firstNameError.textContent = "Le prénom est invalide.";
+    firstContainer.classList.add("error");
+    errorDisplay.textContent =
+      "le prénom invalide.";
     return false;
   } else {
-    firstNameError.textContent = "";
+    errorDisplay.textContent = "";
     return true;
   }
 }
@@ -39,34 +43,41 @@ function validateFirstName() {
 // Fonction pour valider le nom
 function validateLastName() {
   const lastName = document.getElementById("last").value.trim();
-  const lastNameError = document.querySelector(".lastNameErreur");
-  const regex = /^[a-zA-ZÀ-ÿ\s'-]{1,18}$/; // Expression régulière pour valider le nom
+  const lastContainer = document.querySelector(".last-container");
+  const errorDisplay = document.querySelector(".last-container > span");
+  const regex = /^[a-zA-ZÀ-ÿ\s'-]{2,18}$/; // Expression régulière pour valider le nom
 
   if (!regex.test(lastName)) {
-    lastNameError.textContent = "Le nom est invalide.";
+    lastContainer.classList.add("error");
+    errorDisplay.textContent = "Le nom invalide.";
     return false;
   } else {
-    lastNameError.textContent = "";
+    lastContainer.classList.remove("error");
+    errorDisplay.textContent = ""; // Effacer le message d'erreur s'il y en avait un précédemment
     return true;
   }
 }
+
+
 
 // Fonction pour valider l'email
 function validateEmail() {
   const email = document.getElementById("email").value.trim();
-  const emailValidationMessage = document.getElementById("emailValidationMessage");
-  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Expression régulière pour valider l'email
+  const errorDisplay = document.querySelector(".email-container > span");
+  const emailContainer = document.querySelector(".email-container"); // Sélection de l'élément contenant l'entrée de l'e-mail
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Expression régulière pour valider l'e-mail
 
   if (!regex.test(email)) {
-    emailValidationMessage.textContent = "L'adresse électronique est invalide.";
-    emailValidationMessage.style.color = "red";
+    emailContainer.classList.add("error"); // Ajouter la classe d'erreur à l'élément contenant l'entrée de l'e-mail
+    errorDisplay.textContent = "L'adresse électronique est invalide.";
     return false;
   } else {
-    emailValidationMessage.textContent = "L'adresse électronique est valide.";
-    emailValidationMessage.style.color = "green";
+    emailContainer.classList.remove("error"); // Supprimer la classe d'erreur s'il n'y a pas d'erreur
+    errorDisplay.textContent = "";
     return true;
   }
 }
+
 
 // Fonction pour valider la date de naissance
 function validateBirthdate() {
@@ -116,6 +127,7 @@ function checkAllFields() {
 
   if (isFormValid) {
     displayConfirmationMessage();
+    
   }
 
   return isFormValid;
@@ -129,10 +141,11 @@ function displayConfirmationMessage() {
   }
 
   // Masquer le formulaire
-  const form = document.querySelector(".modal-body form");
+  const form = document.querySelector(".bground from");
   if (form) {
     form.style.display = "none";
   }
+  return confirmationMessage;
 }
 
 // Ajouter des événements de changement pour chaque champ
@@ -145,6 +158,7 @@ document.getElementById("checkbox1").addEventListener("change", validateCheckbox
 // Ajouter un événement de clic sur le bouton de soumission
 document.querySelector(".btn-submit").addEventListener("click", function(event) {
   event.preventDefault(); // Empêcher la soumission du formulaire si un champ est invalide
+  console.log(checkAllFields());
   checkAllFields();
 });
 

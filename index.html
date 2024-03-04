@@ -56,22 +56,25 @@
         <span class="close"></span>
         <div class="modal-body">
           <form name="reserve" action="index.html" method="get">
-            <div class="formData">
+            <div class="formData first-container">
               <label for="first">Prénom</label><br>
-              <P class="firstNameErreur"></P>
+              
               <input class="text-control" type="text" id="first" name="first" minlength="2" maxlength="18"
                 required /><br>
+                <span></span>
             </div>
-            <div class="formData">
+            <div class="formData last-container">
               <label for="last">Nom</label><br>
-              <p class="lastNameErreur"></p>
+          
               <input class="text-control" type="text" id="last" name="last" minlength="2" maxlength="18" required /><br>
+              <span class="error-message"></span>
             </div>
             <form id="myForm">
-              <div class="formData">
+              <div class="formData email-container">
                 <label for="email">E-mail</label><br>
                 <div id="emailValidationMessage" class="validation-message"></div>
                 <input class="text-control" type="email" id="email" name="email" required /><br>
+                <span></span>
 
               </div>
 
@@ -130,7 +133,7 @@
               <input class="btn-submit button" type="submit" value="C'est parti" />
               <div id="confirmationMessage" style="display:none;">
                 <p>Merci ! Votre réservation a été reçue.</p>
-                <button id="confirmationCloseBtn">Fermer</button>
+                <button id="confirmationCloseBtn"class="btn-signup modal-btn">Fermer</button>
               </div>
             </form>
             
