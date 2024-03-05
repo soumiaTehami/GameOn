@@ -26,15 +26,15 @@ function validateFirstName() {
   const firstName = document.getElementById("first").value.trim();
   const firstContainer = document.querySelector(".first-container");
   const errorDisplay = document.querySelector(".first-container > span");
-  
+
   const regex = /^[a-zA-ZÀ-ÿ\s'-]{2,18}$/; // Expression régulière pour valider le prénom
 
   if (!regex.test(firstName)) {
     firstContainer.classList.add("error");
-    errorDisplay.textContent =
-      "le prénom invalide.";
+    errorDisplay.textContent = "le prénom invalide.";
     return false;
   } else {
+    firstContainer.classList.remove("error");
     errorDisplay.textContent = "";
     return true;
   }
@@ -58,8 +58,6 @@ function validateLastName() {
   }
 }
 
-
-
 // Fonction pour valider l'email
 function validateEmail() {
   const email = document.getElementById("email").value.trim();
@@ -78,13 +76,16 @@ function validateEmail() {
   }
 }
 
-
 // Fonction pour valider la date de naissance
 function validateBirthdate() {
   const birthdateInput = document.getElementById("birthdate");
   const birthdateValue = birthdateInput.value.trim(); // Supprimer les espaces blancs
+  const birthdateContainer = document.querySelector(".birthdate-container");
+  const errorDisplay = birthdateContainer.querySelector("span");
+
   if (birthdateValue === "") {
-    alert("Veuillez saisir votre date de naissance.");
+    birthdateContainer.classList.add("error");
+    errorDisplay.textContent = "Veuillez entrer une date de naissance.";
     return false;
   }
 
@@ -97,18 +98,20 @@ function validateBirthdate() {
     birthdateInput.value = ""; // Réinitialisation de la valeur du champ de date de naissance
     return false;
   } else {
+    birthdateContainer.classList.remove("error");
+    errorDisplay.textContent = ""; // Effacer le message d'erreur si la date de naissance est valide
     return true;
   }
 }
-
-
 
 // Fonction pour valider la case à cocher
 function validateCheckbox() {
   const checkbox1 = document.getElementById("checkbox1");
 
   if (!checkbox1.checked) {
-    alert("Veuillez cocher la case pour accepter les conditions d'utilisation.");
+    alert(
+      "Veuillez cocher la case pour accepter les conditions d'utilisation."
+    );
     return false;
   } else {
     return true;
@@ -123,11 +126,15 @@ function checkAllFields() {
   const isBirthdateValid = validateBirthdate();
   const isCheckboxValid = validateCheckbox();
 
-  const isFormValid = isFirstNameValid && isLastNameValid && isEmailValid && isBirthdateValid && isCheckboxValid;
+  const isFormValid =
+    isFirstNameValid &&
+    isLastNameValid &&
+    isEmailValid &&
+    isBirthdateValid &&
+    isCheckboxValid;
 
   if (isFormValid) {
     displayConfirmationMessage();
-    
   }
 
   return isFormValid;
@@ -138,12 +145,10 @@ function displayConfirmationMessage() {
   const confirmationMessage = document.getElementById("confirmationMessage");
   if (confirmationMessage) {
     confirmationMessage.style.display = "block";
-  }
-
-  // Masquer le formulaire
-  const form = document.querySelector(".bground from");
-  if (form) {
-    form.style.display = "none";
+    document.querySelector(".formData").style.display = "none"; // Masquer le formulaire
+  } else {
+    document.querySelector(".formData").style.display = "block"; // Afficher le formulaire
+    document.querySelector(".formConfirmation").style.display = "none";
   }
   return confirmationMessage;
 }
@@ -152,21 +157,27 @@ function displayConfirmationMessage() {
 document.getElementById("first").addEventListener("input", validateFirstName);
 document.getElementById("last").addEventListener("input", validateLastName);
 document.getElementById("email").addEventListener("input", validateEmail);
-document.getElementById("birthdate").addEventListener("change", validateBirthdate);
-document.getElementById("checkbox1").addEventListener("change", validateCheckbox);
+document
+  .getElementById("birthdate")
+  .addEventListener("change", validateBirthdate);
+document
+  .getElementById("checkbox1")
+  .addEventListener("change", validateCheckbox);
 
 // Ajouter un événement de clic sur le bouton de soumission
-document.querySelector(".btn-submit").addEventListener("click", function(event) {
-  event.preventDefault(); // Empêcher la soumission du formulaire si un champ est invalide
-  console.log(checkAllFields());
-  checkAllFields();
-});
+document
+  .querySelector(".btn-submit")
+  .addEventListener("click", function (event) {
+    event.preventDefault(); // Empêcher la soumission du formulaire si un champ est invalide
+    console.log(checkAllFields());
+    checkAllFields();
+  });
 
 /*
  * Fonction pour fermer la modale
  */
 function closeModal() {
-  modalbg.style.display = "none"; 
+  modalbg.style.display = "none";
 }
 
 closeBtn.addEventListener("click", closeModal);

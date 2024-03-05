@@ -540,7 +540,6 @@ footer {
   color:white; /* Couleur du texte */
   padding: 10px; /* Espacement intérieur */
   border: 1px solid #cccccc; /* Bordure */
-  border-radius: 5px; /* Coins arrondis */
   margin-bottom: 20px; /* Marge en bas pour l'espace */
 }
 #confirmationCloseBtn {
