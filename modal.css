@@ -546,7 +546,15 @@ footer {
   overflow: hidden;
   position: relative;
   color: #fff;
-  padding:100px;
+  display: flex;
+    height: 650px;
+    padding: 0 30px;
+    text-align: justify;
+    flex-flow: wrap;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    font-weight: 400;
+    padding-bottom: 30px;
 
 }
 #confirmationMessage {
