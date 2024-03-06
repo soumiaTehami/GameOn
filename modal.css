@@ -546,7 +546,8 @@ footer {
   overflow: hidden;
   position: relative;
   color: #fff;
-  padding-top: 10px;
+  padding:100px;
+
 }
 #confirmationMessage {
   display:none;
