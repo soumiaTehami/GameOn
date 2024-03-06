@@ -12,6 +12,9 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const closeBtn = document.querySelector(".close");
+const confirmationMessage = document.getElementById("confirmationMessage");
+const form=document.querySelector("form");
+const closemodalconfim=document.querySelector("#confirmationMessage button")
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -136,40 +139,37 @@ function checkAllFields() {
   if (isFormValid) {
     displayConfirmationMessage();
   }
+return isFormValid;
 
-  return isFormValid;
 }
 
 function displayConfirmationMessage() {
   // Afficher le message de confirmation
-  const confirmationMessage = document.getElementById("confirmationMessage");
+  
   if (confirmationMessage) {
     confirmationMessage.style.display = "block";
-    document.querySelector(".formData").style.display = "none"; // Masquer le formulaire
+    modalbg.style.display = "none"; // Masquer le formulaire
+    form.reset();
   } else {
-    document.querySelector(".formData").style.display = "block"; // Afficher le formulaire
+    modalbg.style.display = "block"; // Afficher le formulaire
     document.querySelector(".formConfirmation").style.display = "none";
   }
-  return confirmationMessage;
+  
 }
 
 // Ajouter des événements de changement pour chaque champ
 document.getElementById("first").addEventListener("input", validateFirstName);
 document.getElementById("last").addEventListener("input", validateLastName);
 document.getElementById("email").addEventListener("input", validateEmail);
-document
-  .getElementById("birthdate")
-  .addEventListener("change", validateBirthdate);
-document
-  .getElementById("checkbox1")
+document.getElementById("birthdate")
+document.addEventListener("change", validateBirthdate);
+document.getElementById("checkbox1")
   .addEventListener("change", validateCheckbox);
 
 // Ajouter un événement de clic sur le bouton de soumission
-document
-  .querySelector(".btn-submit")
+document.querySelector(".btn-submit")
   .addEventListener("click", function (event) {
-    event.preventDefault(); // Empêcher la soumission du formulaire si un champ est invalide
-    console.log(checkAllFields());
+    event.preventDefault(); // Empêcher la soumission du formulaire si un champ est invalde
     checkAllFields();
   });
 
@@ -181,3 +181,7 @@ function closeModal() {
 }
 
 closeBtn.addEventListener("click", closeModal);
+closemodalconfim.addEventListener("click", ()=>{
+  confirmationMessage.style.display="none";
+  modalbg.style.display = "none";
+})

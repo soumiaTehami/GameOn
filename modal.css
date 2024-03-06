@@ -535,12 +535,33 @@ footer {
   color:red;
   font-weight: 300;
 }
+.content2 {
+  margin: 20% auto;
+  width: 100%;
+  max-width: 500px;
+  animation-name: modalopen;
+  animation-duration: var(--modal-duration);
+  background: #232323;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  padding-top: 10px;
+}
 #confirmationMessage {
-  background-color:#000; /* Couleur de fond */
+  display:none;
   color:white; /* Couleur du texte */
   padding: 10px; /* Espacement intérieur */
   border: 1px solid #cccccc; /* Bordure */
   margin-bottom: 20px; /* Marge en bas pour l'espace */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(26, 39, 156, 0.4);
 }
 #confirmationCloseBtn {
 
@@ -561,3 +582,4 @@ footer {
 .error input{
   border: 2px solid #e54858;
 } 
+

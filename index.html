@@ -27,7 +27,6 @@
       </a>
     </div>
   </div>
-  </div>
   <main>
     <div class="hero-section">
       <div class="hero-content">
@@ -39,7 +38,7 @@
           Vous aimez jouer ? Notre prochain évènement gaming est ouvert
           aux réservations... Places limitées !
         </p>
-        <button class="btn-signup modal-btn">
+        <button class="btn-signup modal-btn ">
           je m'inscris
         </button>
       </div>
@@ -69,7 +68,7 @@
               <input class="text-control" type="text" id="last" name="last" minlength="2" maxlength="18" required /><br>
               <span class="error-message"></span>
             </div>
-            <form id="myForm">
+          
               <div class="formData email-container">
                 <label for="email">E-mail</label><br>
                 <div id="emailValidationMessage" class="validation-message"></div>
@@ -119,7 +118,7 @@
 
               <div class="formData">
                 <input class="checkbox-input" type="checkbox" id="checkbox1" name="acceptéCondition" />
-                <label class="checkbox2-label" for="checkbox1" required>
+                <label class="checkbox2-label" for="checkbox1" >
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
@@ -132,16 +131,19 @@
                 <br>
               </div>
               <input class="btn-submit button" type="submit" value="C'est parti" />
-              <div id="confirmationMessage" style="display:none;">
-                <p>Merci ! Votre réservation a été reçue.</p>
-                <button id="confirmationCloseBtn"class="btn-signup modal-btn">Fermer</button>
-              </div>
-            </form>
-            
+              
+          </form>
+          
            
 
         </div>
       </div>
+    </div>
+    <div id="confirmationMessage" >
+      <div class="content2">
+      <p>Merci ! Votre réservation a été reçue.</p>
+      <button id="confirmationCloseBtn" class="btn-signup modal-btn">Fermer</button>
+    </div>
     </div>
     
   </main>
