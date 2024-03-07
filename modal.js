@@ -141,9 +141,9 @@ function checkAllFields() {
   }
   return isFormValid;
 }
-
+ // Afficher le message de confirmation
 function displayConfirmationMessage() {
-  // Afficher le message de confirmation
+ 
 
   if (confirmationMessage) {
     confirmationMessage.style.display = "block";
@@ -161,13 +161,11 @@ document.getElementById("last").addEventListener("input", validateLastName);
 document.getElementById("email").addEventListener("input", validateEmail);
 document.getElementById("birthdate");
 document.addEventListener("change", validateBirthdate);
-document
-  .getElementById("checkbox1")
+document.getElementById("checkbox1")
   .addEventListener("change", validateCheckbox);
 
 // Ajouter un événement de clic sur le bouton de soumission
-document
-  .querySelector(".btn-submit")
+document.querySelector(".btn-submit")
   .addEventListener("click", function (event) {
     event.preventDefault(); // Empêcher la soumission du formulaire si un champ est invalde
     checkAllFields();
