@@ -159,10 +159,8 @@ function displayConfirmationMessage() {
 document.getElementById("first").addEventListener("input", validateFirstName);
 document.getElementById("last").addEventListener("input", validateLastName);
 document.getElementById("email").addEventListener("input", validateEmail);
-document.getElementById("birthdate");
-document.addEventListener("change", validateBirthdate);
-document.getElementById("checkbox1")
-  .addEventListener("change", validateCheckbox);
+document.getElementById("birthdate").addEventListener("change", validateBirthdate);
+document.getElementById("checkbox1").addEventListener("change", validateCheckbox);
 
 // Ajouter un événement de clic sur le bouton de soumission
 document.querySelector(".btn-submit")
