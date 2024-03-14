@@ -120,6 +120,23 @@ function validateCheckbox() {
     return true;
   }
 }
+function validateTournamentParticipation() {
+  const quantityInput = document.getElementById("quantity");
+  const quantityValue = quantityInput.value.trim(); // Supprimer les espaces blancs
+
+  // Vérifier si le champ est vide
+  if (quantityValue === "") {
+    return false;
+  }
+
+  // Vérifier si le champ contient un numéro valide
+  if (isNaN(quantityValue) || parseInt(quantityValue) <= 0) {
+    return false;
+  }
+
+  return true; // Le champ est valide
+}
+
 
 // Fonction pour vérifier si tous les champs sont valides avant de soumettre le formulaire
 function checkAllFields() {
@@ -128,13 +145,15 @@ function checkAllFields() {
   const isEmailValid = validateEmail();
   const isBirthdateValid = validateBirthdate();
   const isCheckboxValid = validateCheckbox();
+  const isTournamentParticipationValid = validateTournamentParticipation()
 
   const isFormValid =
     isFirstNameValid &&
     isLastNameValid &&
     isEmailValid &&
     isBirthdateValid &&
-    isCheckboxValid;
+    isCheckboxValid &&
+    isTournamentParticipationValid;
 
   if (isFormValid) {
     displayConfirmationMessage();
@@ -165,7 +184,7 @@ document.getElementById("checkbox1").addEventListener("change", validateCheckbox
 // Ajouter un événement de clic sur le bouton de soumission
 document.querySelector(".btn-submit")
   .addEventListener("click", function (event) {
-    event.preventDefault(); // Empêcher la soumission du formulaire si un champ est invalde
+  event.preventDefault(); // Empêcher la soumission du formulaire si un champ est invalde
     checkAllFields();
   });
 
